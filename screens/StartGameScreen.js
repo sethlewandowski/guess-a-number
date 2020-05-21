@@ -13,7 +13,8 @@ import {
 import Card from '../components/Card.js';
 import Input from '../components/Input.js';
 import NumberContainer from '../components/NumberContainer.js';
-import Colors from '../constants/colors';
+import Colors from '../constants/Colors.js';
+import AppStyles from '../constants/AppStyles';
 
 const StartGameScreen = props => {
 
@@ -61,7 +62,7 @@ const StartGameScreen = props => {
 				<Button
 					color={Colors.primary}
 					title="START GAME"
-					onPress={()=>{}}/> 
+					onPress={()=> props.onStartGame(selectedNumber)}/> 
 			</Card>
 	}
 	return (
@@ -69,7 +70,7 @@ const StartGameScreen = props => {
 			Keyboard.dismiss();
 		}}>
 			<View style={styles.screen}>
-				<Text style={styles.title}>I can Guess your number!</Text>
+				<Text style={AppStyles.title}>Pick a number between 1 and 99 and I'll guess it!</Text>
 				<Card style={styles.inputContainer}>
 					<Text>Select a Number</Text>
 					<Input style={styles.input} 
@@ -107,10 +108,6 @@ const styles = StyleSheet.create({
 		flex: 1,
 		padding: 10,
 		alignItems: 'center',
-	},
-	title: {
-		fontSize: 20,
-		marginVertical: 10,
 	},
 	inputContainer: {
 		width: 300,
