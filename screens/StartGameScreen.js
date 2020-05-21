@@ -14,7 +14,8 @@ import Card from '../components/Card.js';
 import Input from '../components/Input.js';
 import NumberContainer from '../components/NumberContainer.js';
 import Colors from '../constants/Colors.js';
-import AppStyles from '../constants/AppStyles';
+import ScreenHeader from '../components/ScreenHeader.js';
+import MainButton from '../components/MainButton.js';
 
 const StartGameScreen = props => {
 
@@ -57,12 +58,16 @@ const StartGameScreen = props => {
 	if (confirmed) {
 		confirmedOutput = 
 			<Card style={styles.summaryContainer}>
-				<Text>You selected</Text>
+				<Text style={styles.text}>You selected</Text>
 				<NumberContainer>{selectedNumber}</NumberContainer>
-				<Button
-					color={Colors.primary}
-					title="START GAME"
-					onPress={()=> props.onStartGame(selectedNumber)}/> 
+				<Text style={styles.text}>Let's see how quickly I can guess it! Ready?</Text>
+				<MainButton onPress={()=> props.onStartGame(selectedNumber)}>
+					Start Game 
+				</MainButton> 
+				<Button 
+					color={Colors.accent} 
+					title="Reset" 
+					onPress={resetInputHandler}/>
 			</Card>
 	}
 	return (
@@ -70,9 +75,9 @@ const StartGameScreen = props => {
 			Keyboard.dismiss();
 		}}>
 			<View style={styles.screen}>
-				<Text style={AppStyles.title}>Pick a number between 1 and 99 and I'll guess it!</Text>
+				<ScreenHeader>Pick a number between 1 and 99 and I'll guess it!</ScreenHeader>
 				<Card style={styles.inputContainer}>
-					<Text>Select a Number</Text>
+					<Text style={styles.text}>Select a Number</Text>
 					<Input style={styles.input} 
 						blurOnSubmit 
 						autoCapitalize='none' 
@@ -109,6 +114,9 @@ const styles = StyleSheet.create({
 		padding: 10,
 		alignItems: 'center',
 	},
+	title: {
+		fontFamily: 'open-sans-bold',
+	},
 	inputContainer: {
 		width: 300,
 		maxWidth: '80%',
@@ -125,12 +133,20 @@ const styles = StyleSheet.create({
 	},
 	input: {
 		width: 50,
+		height: 50,
 		borderRadius: 10,
-		borderWidth: 2,
-		textAlign: 'center'
+		borderWidth: 4,
+		textAlign: 'center',
+		fontSize: 22,
 	},
 	summaryContainer: {
 		marginTop: 20,
+	},
+	text: {
+		textAlign: 'center',
+		fontSize: 20,
+		padding: 10,
+
 	}
 });
 

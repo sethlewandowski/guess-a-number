@@ -13,7 +13,8 @@ import {
 
 import NumberContainer from '../components/NumberContainer.js';
 import Card from '../components/Card.js';
-import AppStyles from '../constants/AppStyles';
+import ScreenHeader from '../components/ScreenHeader.js';
+import MainButton from '../components/MainButton.js';
 
 const generateRandomBetween = (min, max, exclude) => {
 	 min = Math.ceil(min);
@@ -63,11 +64,22 @@ const GameScreen = props => {
 
 	return (
 		<View style={styles.screen}>
-			<Text styles={AppStyles.title}>Is it</Text>
+			<ScreenHeader>Is it ?</ScreenHeader>
 			<NumberContainer>{currentGuess}</NumberContainer>
 			<Card style={styles.buttonContainer}>
-				<Button title="LOWER" onPress={nextGuessHandler.bind(this, 'lower')}/>
-				<Button title="GREATER" onPress={nextGuessHandler.bind(this, 'greater')}/>
+				<Button 
+					title="LOWER" 
+					onPress={nextGuessHandler.bind(this, 'lower')}
+				/>
+				<Button 
+					title="GREATER" 
+					onPress={nextGuessHandler.bind(this, 'greater')}
+				/>
+			</Card>
+			<Card style={styles.buttonContainer}>
+				<MainButton style={styles.startOverButton} onPress={props.onRestart}>
+					Start Over
+				</MainButton>
 			</Card>
 		</View>
 	);
@@ -86,6 +98,9 @@ const styles = StyleSheet.create({
 		marginTop: 20,
 		width: 300,
 		maxWidth: '80%',
+	},
+	startOverButton: {
+		backgroundColor: 'red',
 	}
 });
 
